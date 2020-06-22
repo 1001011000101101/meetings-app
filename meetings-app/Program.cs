@@ -18,8 +18,8 @@ namespace meetings_app
 
             while (true)
             {
-                string command = Console.ReadLine();
-                var values = command.Split(" ");
+                string userInput = Console.ReadLine();
+                var values = userInput.Split(" ");
                 string commandName = values.First();
                 commandFactory.GetCommand(commandName).Execute(meetingManager, values);
             }
