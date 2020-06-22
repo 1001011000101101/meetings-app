@@ -14,7 +14,16 @@ namespace meetings_app
 
             MeetingManager meetingManager = new MeetingManager();
             meetingManager.Reminder.Notify += Reminder_Notify;
+
             var commandFactory = new CommandFactory();
+            commandFactory
+                .AddCommand(Constants.AddCommandName, new AddCommand())
+                .AddCommand(Constants.DeleteCommandName, new DeleteCommand())
+                .AddCommand(Constants.EditDurationCommandName, new EditDurationCommand())
+                .AddCommand(Constants.EditNotificationCommandName, new EditNotificationCommand())
+            .AddCommand(Constants.EditStartTimeCommandName, new EditStartTimeCommand())
+            .AddCommand(Constants.ExportCommandName, new ExportCommand())
+            .AddCommand(Constants.PrintCommandName, new PrintCommand());
 
             while (true)
             {

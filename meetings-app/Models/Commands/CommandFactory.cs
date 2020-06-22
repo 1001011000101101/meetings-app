@@ -12,14 +12,12 @@ namespace meetings_app.Models
         public CommandFactory()
         {
             commands = new Dictionary<string, Command>();
+        }
 
-            commands.Add(Constants.AddCommandName, new AddCommand());
-            commands.Add(Constants.DeleteCommandName, new DeleteCommand());
-            commands.Add(Constants.EditDurationCommandName, new EditDurationCommand());
-            commands.Add(Constants.EditNotificationCommandName, new EditNotificationCommand());
-            commands.Add(Constants.EditStartTimeCommandName, new EditStartTimeCommand());
-            commands.Add(Constants.ExportCommandName, new ExportCommand());
-            commands.Add(Constants.PrintCommandName, new PrintCommand());
+        public CommandFactory AddCommand(string name, Command command)
+        {
+            commands.Add(name, command);
+            return this;
         }
 
         public Command GetCommand(string name)
