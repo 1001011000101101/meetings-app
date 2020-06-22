@@ -1,6 +1,7 @@
 ﻿using meetings_app.Code;
 using meetings_app.Models;
 using System;
+using System.Linq;
 using System.Reflection.Metadata;
 
 namespace meetings_app
@@ -10,14 +11,17 @@ namespace meetings_app
         static void Main(string[] args)
         {
             Console.WriteLine(Constants.GreetingMessage);
+
             MeetingManager meetingManager = new MeetingManager();
             meetingManager.Reminder.Notify += Reminder_Notify;
-            CommandWorker commandWorker = new CommandWorker();
+            var commandFactory = new CommandFactory();
 
             while (true)
             {
                 string command = Console.ReadLine();
-                commandWorker.Execute(command, meetingManager);
+                var values = command.Split(" ");
+                string commandName = values.First();
+                commandFactory.GetCommand(commandName).Execute(meetingManager, values);
             }
         }
 
