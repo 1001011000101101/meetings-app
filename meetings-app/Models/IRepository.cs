@@ -5,7 +5,7 @@ using System.Text;
 
 namespace meetings_app.Models
 {
-    interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         IQueryable<T> All();
         T ById(int id);
